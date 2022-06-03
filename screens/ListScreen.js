@@ -11,7 +11,7 @@ const List  = () => {
 					return (
 						<View key={key} style={styles.card}>
 							<Text>{prop.name}</Text>
-							<Text>Adres: {prop.adress}, {prop.city}</Text>
+							<Text>Adres: {prop.address}, {prop.city}</Text>
 							<Text>Telefoon: {prop.telephone}</Text>				
 						</View>
 					);

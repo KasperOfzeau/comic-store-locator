@@ -1,7 +1,7 @@
 [
     {
         "name": "Strips & Zo",
-        "adress": "Boterstraat 17",
+        "address": "Boterstraat 17",
         "city": "Alkmaar",
         "telephone": "06-50459948",
         "website": "www.stripsenzo.nl",
@@ -10,7 +10,7 @@
     },
     {
         "name": "Beeldverhaal",
-        "adress": "Schutterstraat 27",
+        "address": "Schutterstraat 27",
         "city": "Almere",
         "telephone": "036-5402672",
         "website": "www.hetbeeldverhaal.nl",
@@ -19,7 +19,7 @@
     },
     {
         "name": "Antiquariaat de Spreng",
-        "adress": "Boompjes 1",
+        "address": "Boompjes 1",
         "city": "Almkerk",
         "telephone": "0183-403402",
         "latitude": "51.77571748576932",
@@ -27,7 +27,7 @@
     },
     {
         "name": "T Ezelsoor",
-        "adress": "Achter de Arnhemse Poortwal 21",
+        "address": "Achter de Arnhemse Poortwal 21",
         "city": "Amersfoort",
         "telephone": "033-4621250",
         "latitude": "52.153536829020894",
@@ -35,7 +35,7 @@
     },
     {
         "name": "Fantasia",
-        "adress": "Buitenveldertselaan 174",
+        "address": "Buitenveldertselaan 174",
         "city": "Amsterdam",
         "telephone": "020-6427888",
         "latitude": "52.325022182566194",
@@ -43,7 +43,7 @@
     },
     {
         "name": "Snoek Strips",
-        "adress": "Linnaeusstraat 205",
+        "address": "Linnaeusstraat 205",
         "city": "Amsterdam",
         "telephone": "020-4688109",
         "latitude": "52.35666284186291",
@@ -51,7 +51,7 @@
     },
     {
         "name": "De Stripspecialist",
-        "adress": "Boschstraat 68",
+        "address": "Boschstraat 68",
         "city": "Breda",
         "telephone": "076-5284700",
         "website": "destripspecialist.nl ",
@@ -60,7 +60,7 @@
     },
     {
         "name": "t Snuffel",
-        "adress": "Gasthuisstraat 9",
+        "address": "Gasthuisstraat 9",
         "city": "Bredevoort",
         "telephone": "0543-451703",
         "latitude": "51.943335229922255",
@@ -68,7 +68,7 @@
     },
     {
         "name": "Lektuurhuis ",
-        "adress": "Markt 44",
+        "address": "Markt 44",
         "city": "Culemborg",
         "telephone": "0345-514666",
         "latitude": "51.95709353647487",
@@ -76,7 +76,7 @@
     },
     {
         "name": "Neat Stuff",
-        "adress": "Orthenstraat 9",
+        "address": "Orthenstraat 9",
         "city": "Den Bosch",
         "telephone": "073-8229002",
         "website": "neatstuff@hotmail.com",

@@ -56,7 +56,7 @@ const Map  = () => {
 						<View>
 							<View style={styles.bubble}>
 								<Text style={styles.name}>{prop.name}</Text>
-								<Text>Adres: {prop.adress}, {prop.city}</Text>
+								<Text>Adres: {prop.address}, {prop.city}</Text>
 								<Text>Telefoon: {prop.telephone}</Text>				
 							</View>
 							<View style={styles.arrowBorder}/>
