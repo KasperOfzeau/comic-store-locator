@@ -62,7 +62,8 @@ const Map  = ({ route, navigation }) => {
 								<View style={styles.bubble}>
 									<Text style={styles.name}>{prop.name}</Text>
 									<Text>Adres: {prop.address}, {prop.city}</Text>
-									<Text>Telefoon: {prop.telephone}</Text>				
+									<Text>Telefoon: {prop.telephone}</Text>			
+									<Text>{prop.website ? "Website: " + prop.website : "Geen website"}</Text>	
 								</View>
 								<View style={styles.arrowBorder}/>
 								<View style={styles.arrow}/>
