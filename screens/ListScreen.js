@@ -23,6 +23,7 @@ const List  = () => {
 							<Text>{prop.name}</Text>
 							<Text>Adres: {prop.adress}, {prop.city}</Text>
 							<Text>Telefoon: {prop.telephone}</Text>
+							<Text>{prop.website ? "Website: " + prop.website : "Geen website"}</Text>
 							<View style={styles.rating}>
 								<StarRating
 									disabled={false}
