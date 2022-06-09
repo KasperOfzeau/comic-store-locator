@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-<<<<<<< Updated upstream
 import { StyleSheet, Text, View, Dimensions, Image,SafeAreaView, ScrollView, StatusBar } from 'react-native'
 import jsonData from '../stores.json';
 import StarRating from 'react-native-star-rating';
@@ -13,45 +12,6 @@ const List  = () => {
 		setRatings({ ...ratings, [id] : rating })
 		console.log(ratings)
 	}
-=======
-import { StyleSheet, Text, View, Button, Dimensions, Image,SafeAreaView, ScrollView, StatusBar } from 'react-native'
-import jsonData from '../stores.json';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Ionicons } from "@expo/vector-icons";
-
-const List  = ({ navigation }) => {
-
-	const [favorites, setFavorites] = useState({});
-
-	useEffect(() => {
-		(async () => {
-			setFavorites(getData());
-			console.log(favorites['_W'])
-		  })();
-	  }, []);
-
-	const storeData = async (value) => {
-		try {
-		  const jsonValue = JSON.stringify(favorites)
-		  await AsyncStorage.setItem('favorites', jsonValue)
-		  console.log('succes')
-		  console.log(favorites)
-		} catch (e) {
-		  console.log(e)
-		}
-	  }
-
-	  
-	const getData = async () => {
-		try {
-		const jsonValue = await AsyncStorage.getItem('favorites')
-		return result != null ? JSON.parse(jsonValue) : null;
-		} catch(e) {
-		// error reading value
-		}
-	}
-  
->>>>>>> Stashed changes
 
 	return (
       	<ScrollView>
@@ -61,7 +21,6 @@ const List  = ({ navigation }) => {
 					return (
 						<View key={key} style={styles.card}>
 							<Text>{prop.name}</Text>
-<<<<<<< Updated upstream
 							<Text>Adres: {prop.adress}, {prop.city}</Text>
 							<Text>Telefoon: {prop.telephone}</Text>
 							<Text>{prop.website ? "Website: " + prop.website : "Geen website"}</Text>
@@ -75,16 +34,6 @@ const List  = ({ navigation }) => {
 									starSize={35}
 								/>
 							</View>
-=======
-							<Text>Adres: {prop.address}, {prop.city}</Text>
-							<Text>Telefoon: {prop.telephone}</Text>	
-							<Button
-								title="Voeg toe aan favorieten"
-								onPress={() => {
-									storeData(prop.name);
-							    }}	
-							/>		
->>>>>>> Stashed changes
 						</View>
 					);
 				})}
