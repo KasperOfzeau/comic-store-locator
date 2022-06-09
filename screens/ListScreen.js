@@ -23,12 +23,16 @@ const List  = () => {
 							<Text>{prop.name}</Text>
 							<Text>Adres: {prop.adress}, {prop.city}</Text>
 							<Text>Telefoon: {prop.telephone}</Text>
-							<StarRating
-								disabled={false}
-								maxStars={5}
-								rating={ratings.hasOwnProperty(prop.name) ? ratings[prop.name] : 0}
-								selectedStar={(rating) => onStarRatingPress(prop.name, rating)}
-							/>
+							<View style={styles.rating}>
+								<StarRating
+									disabled={false}
+									maxStars={5}
+									rating={ratings.hasOwnProperty(prop.name) ? ratings[prop.name] : 0}
+									selectedStar={(rating) => onStarRatingPress(prop.name, rating)}
+									fullStarColor={'#FDCC0D'}
+									starSize={35}
+								/>
+							</View>
 						</View>
 					);
 				})}
@@ -52,6 +56,10 @@ const styles = StyleSheet.create({
 		  padding: 15,
 		  width: '80%',
 		  marginTop: 15 
+	  },
+	  rating: {
+		  width: '80%',
+		  marginTop: 15
 	  }
   });
 
