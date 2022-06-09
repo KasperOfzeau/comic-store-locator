@@ -5,7 +5,11 @@ import * as Location from 'expo-location';
 import jsonData from '../stores.json';
 import { Ionicons } from "@expo/vector-icons";
 
-const Map  = () => {
+const Map  = ({ route, navigation }) => {
+	if(typeof route.params !== 'undefined'){
+		const { paramLatitude, paramLongitude } = route.params;
+		// console.log(route.params)
+	}
 
 	const [currentLocation, setCurrentLocation] = useState({
 		latitude: 0,
@@ -21,7 +25,7 @@ const Map  = () => {
 		  }
 	
 		  let location = await Location.getCurrentPositionAsync({});
-		  if(location) {
+		  if(typeof location !== 'undefined') {
 			setCurrentLocation({
 			  latitude: location.coords.latitude,
 			  longitude: location.coords.longitude
