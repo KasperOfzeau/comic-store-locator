@@ -18,6 +18,7 @@ export default function App() {
           name="Home"
           component={HomeScreen}
           options={{
+            headerShown: false,
             tabBarLabel: 'Home',
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="home" color={color} size={size} />
@@ -28,6 +29,7 @@ export default function App() {
           name="Map"
           component={MapScreen}
           options={{
+            headerShown: false,
             tabBarLabel: 'Map',
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="map" color={color} size={size} />
@@ -38,6 +40,7 @@ export default function App() {
           name="List"
           component={ListScreen}
           options={{
+            headerShown: false,
             tabBarLabel: 'List',
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="list" color={color} size={size} />
