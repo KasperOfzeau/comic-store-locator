@@ -7,6 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import HomeScreen from "./screens/HomeScreen";
 import MapScreen from "./screens/MapScreen";
 import ListScreen from "./screens/ListScreen";
+import SettingsScreen from "./screens/SettingsScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -26,7 +27,7 @@ export default function App() {
           }}
         />
         <Tab.Screen
-          name="Map"
+          name="Kaart"
           component={MapScreen}
           options={{
             headerShown: false,
@@ -37,13 +38,24 @@ export default function App() {
           }}
         />
         <Tab.Screen
-          name="List"
+          name="Alle winkels"
           component={ListScreen}
           options={{
             headerShown: false,
             tabBarLabel: 'List',
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="list" color={color} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Instellingen"
+          component={SettingsScreen}
+          options={{
+            headerShown: false,
+            tabBarLabel: 'Settings',
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="settings" color={color} size={size} />
             ),
           }}
         />
