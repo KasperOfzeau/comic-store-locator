@@ -1,17 +1,26 @@
-import React from "react";
-import { Text, View } from "react-native";
+import React, { useContext } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import themeContext from '../config/themeContext';
 import { Ionicons } from "@expo/vector-icons";
-import SafeViewAndroid from "../components/SafeAreaViewAndroid";
 
 const Home = () => {
-return (
-	<View style={SafeViewAndroid.AndroidSafeArea}>
-		<View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-			<Text style={{ color: "#006600", fontSize: 40 }}>Home Screen!</Text>
-			<Ionicons name="md-home" size={80} color="#006600" />
+
+	const theme = useContext(themeContext);
+
+	return (
+		<View style={[ styles.container, {backgroundColor: theme.background }]}>
+			<Text style={{ color: theme.color, fontSize: 40 }}>Home Screen!</Text>
+			<Ionicons name="md-home" size={80} color={theme.color} />
 		</View>
-	</View>
-);
+	);
 };
+
+const styles = StyleSheet.create({
+	container: {
+	  flex: 1,
+	  alignItems: 'center',
+	  justifyContent: 'center',
+	},
+});
 
 export default Home;

@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, Dimensions, Image } from 'react-native'
 import MapView, {Callout, Marker} from 'react-native-maps';
 import * as Location from 'expo-location';
 import jsonData from '../stores.json';
-import SafeViewAndroid from "../components/SafeAreaViewAndroid";
 import { Ionicons } from "@expo/vector-icons";
 
 const Map  = ({ route, navigation }) => {
@@ -36,7 +35,7 @@ const Map  = ({ route, navigation }) => {
 	}, []);
 
 	return (
-			<View style={SafeViewAndroid.AndroidSafeArea}>
+			<View style={styles.container}>
 			<MapView 
 				style={styles.map}
 				region={{

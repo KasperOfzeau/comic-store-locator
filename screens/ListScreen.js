@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { StyleSheet, Text, View, Dimensions, Image,SafeAreaView, ScrollView, StatusBar } from 'react-native'
 import jsonData from '../stores.json';
 import StarRating from 'react-native-star-rating';
-import SafeViewAndroid from "../components/SafeAreaViewAndroid";
+import themeContext from '../config/themeContext';
 import { Ionicons } from "@expo/vector-icons";
+import theme from "../config/theme";
 
 const List  = () => {
 
+	const theme = useContext(themeContext);
 	const [ratings, setRatings] = useState({});
 
 	function onStarRatingPress(id, rating) {
@@ -16,16 +18,15 @@ const List  = () => {
 
 	return (
       	<ScrollView>
-			  <View style={SafeViewAndroid.AndroidSafeArea}></View>
-				<View style={styles.container}>
+				<View style={[ styles.container, {backgroundColor: theme.background }]}>
 					{jsonData.map((prop, key) => {
 						// console.log(prop)
 						return (
-							<View key={key} style={styles.card}>
-								<Text>{prop.name}</Text>
-								<Text>Adres: {prop.address}, {prop.city}</Text>
-								<Text>Telefoon: {prop.telephone}</Text>
-								<Text>{prop.website ? "Website: " + prop.website : "Geen website"}</Text>
+							<View key={key} style={[ styles.card, { borderColor: theme.borderColor, backgroundColor: theme.secondBackground }]}>
+								<Text style={{color: theme.color}}>{prop.name}</Text>
+								<Text style={{color: theme.color}}>Adres: {prop.address}, {prop.city}</Text>
+								<Text style={{color: theme.color}}>Telefoon: {prop.telephone}</Text>
+								<Text style={{color: theme.color}}>{prop.website ? "Website: " + prop.website : "Geen website"}</Text>
 								<View style={styles.rating}>
 									<StarRating
 										disabled={false}
@@ -52,9 +53,7 @@ const styles = StyleSheet.create({
 		marginBottom: 20
 	  },
 	  card: {
-		  backgroundColor: '#fff',
 		  borderRadius: 6,
-		  borderColor: "#ccc",
 		  borderWidth: 0.5,
 		  padding: 15,
 		  width: '80%',
