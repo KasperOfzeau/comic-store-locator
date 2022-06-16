@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react";
-import { StyleSheet, Text, View, Dimensions, Image,SafeAreaView, ScrollView, StatusBar } from 'react-native'
+import { StyleSheet, Text, View, Button, Dimensions, Image,SafeAreaView, ScrollView, StatusBar } from 'react-native'
 import jsonData from '../stores.json';
 import StarRating from 'react-native-star-rating';
 import themeContext from '../config/themeContext';
 import { Ionicons } from "@expo/vector-icons";
 import theme from "../config/theme";
 
-const List  = () => {
+const List  = ({ navigation }) => {
 
 	const theme = useContext(themeContext);
 	const [ratings, setRatings] = useState({});
@@ -37,6 +37,15 @@ const List  = () => {
 										starSize={35}
 									/>
 								</View>
+								<Button
+									title="Bekijk op de kaart"
+									onPress={() => {
+									navigation.navigate('Kaart', {
+										latitude: prop.latitude,
+										longitude: prop.longitude,
+									});
+									}}
+								/>
 							</View>
 						);
 					})}
