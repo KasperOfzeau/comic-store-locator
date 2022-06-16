@@ -55,6 +55,7 @@ const Map  = ({ route, navigation }) => {
 					longitudeDelta: 0.0421,
 				}}
 				showsUserLocation={true}
+				showsMyLocationButton={true}
 				>
 				{jsonData.map((prop, key) => {
 					// console.log(prop)
@@ -78,7 +79,7 @@ const Map  = ({ route, navigation }) => {
 								<View style={styles.arrow}/>
 							</View>
 						</Callout>
-						</Marker>
+					  </Marker>
 					);
 				})}
 				</MapView>
