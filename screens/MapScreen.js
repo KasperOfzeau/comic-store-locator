@@ -55,7 +55,6 @@ const Map  = ({ route, navigation }) => {
 					longitudeDelta: 0.0421,
 				}}
 				showsUserLocation={true}
-				showsMyLocationButton={true}
 				>
 				{jsonData.map((prop, key) => {
 					// console.log(prop)
