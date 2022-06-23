@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { StyleSheet, Text, View, Button, Dimensions, Image,SafeAreaView, ScrollView, StatusBar } from 'react-native'
+import { StyleSheet, Share, Text, View, Button, Dimensions, Image,SafeAreaView, ScrollView, StatusBar } from 'react-native'
 import StarRating from 'react-native-star-rating';
 import themeContext from '../config/themeContext';
 import { Linking } from 'react-native';
@@ -67,6 +67,25 @@ const List  = ({ navigation }) => {
 		saveReviews();
 	  }, [ratings]);
 
+	  const onShare = async (text) => {
+		try {
+		  const result = await Share.share({
+			message: text,
+		  });
+		  if (result.action === Share.sharedAction) {
+			if (result.activityType) {
+			  // shared with activity type of result.activityType
+			} else {
+			  // shared
+			}
+		  } else if (result.action === Share.dismissedAction) {
+			// dismissed
+		  }
+		} catch (error) {
+		  alert(error.message);
+		}
+	  };
+
 	return (
       	<ScrollView>
 				<View style={[ styles.container, {backgroundColor: theme.background }]}>
@@ -102,6 +121,10 @@ const List  = ({ navigation }) => {
 										onPress={() => Linking.openURL(prop.googleMaps)}>
 										<Ionicons name="map" size={14}/> Google Maps
 								</Text>
+								<Button title="Share" onPress={() => {
+									onShare("Ken je de stripwinkel " + prop.name + " al? Ik wel! Ik heb deze gevonden met de Stripwinkel zoeker." )
+								 } 
+								}/>
 							</View>
 						);
 					})} 
