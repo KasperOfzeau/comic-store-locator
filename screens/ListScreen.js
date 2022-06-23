@@ -15,7 +15,6 @@ const List  = ({ navigation }) => {
 
 	function onStarRatingPress(id, rating) {
 		setRatings({ ...ratings, [id] : rating })
-		saveReviews()
 	}
 
 	const getStoreData=()=>{
@@ -42,9 +41,8 @@ const List  = ({ navigation }) => {
 	const saveReviews = async () => {
 		try {
 		  await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(ratings))
-		  alert('Data successfully saved')
 		} catch (e) {
-		  alert('Failed to save the data to the storage')
+		  console.log('Failed to save the data to the storage ' + e)
 		}
 	  }
 
@@ -54,11 +52,9 @@ const List  = ({ navigation }) => {
 	  
 		  if (value !== null) {
 			setRatings(JSON.parse(value));
-		  } else {
-			  console.log('geen items gevonden')
 		  }
 		} catch (e) {
-		  alert('Failed to fetch the input from storage');
+			console.log('Failed to save the data to the storage ' + e)
 		}
 	  };
 
@@ -66,6 +62,10 @@ const List  = ({ navigation }) => {
 		getStoreData();
 		readReviews();
 	  }, []);
+
+	  useEffect(() => {
+		saveReviews();
+	  }, [ratings]);
 
 	return (
       	<ScrollView>
@@ -98,7 +98,7 @@ const List  = ({ navigation }) => {
 									});
 									}}
 								/>
-								<Text style={styles.link}
+								<Text style={[styles.link, {color: theme.link}]}
 										onPress={() => Linking.openURL(prop.googleMaps)}>
 										<Ionicons name="map" size={14}/> Google Maps
 								</Text>
@@ -130,7 +130,6 @@ const styles = StyleSheet.create({
 		  marginBottom: 15
 	  },
 	  link: {
-		color: 'blue',
 		marginTop: 15
 	  }
   });
