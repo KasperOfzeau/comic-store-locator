@@ -32,11 +32,11 @@ export default function App() {
       <NavigationContainer theme = {mode === true ? DarkTheme : DefaultTheme}>
         <Tab.Navigator>
           <Tab.Screen
-            name="Home"
+            name="Startpagina"
             component={HomeScreen}
             options={{
               // headerShown: false,
-              tabBarLabel: 'Home',
+              tabBarLabel: 'Start',
               tabBarIcon: ({ color, size }) => (
                 <Ionicons name="home" color={color} size={size} />
               ),
@@ -47,7 +47,7 @@ export default function App() {
             component={MapScreen}
             options={{
               // headerShown: false,
-              tabBarLabel: 'Map',
+              tabBarLabel: 'Kaart',
               tabBarIcon: ({ color, size }) => (
                 <Ionicons name="map" color={color} size={size} />
               ),
@@ -58,7 +58,7 @@ export default function App() {
             component={ListScreen}
             options={{
               // headerShown: false,
-              tabBarLabel: 'List',
+              tabBarLabel: 'Lijst',
               tabBarIcon: ({ color, size }) => (
                 <Ionicons name="list" color={color} size={size} />
               ),
@@ -69,7 +69,7 @@ export default function App() {
             component={SettingsScreen}
             options={{
               // headerShown: false,
-              tabBarLabel: 'Settings',
+              tabBarLabel: 'Instellingen',
               tabBarIcon: ({ color, size }) => (
                 <Ionicons name="settings" color={color} size={size} />
               ),
