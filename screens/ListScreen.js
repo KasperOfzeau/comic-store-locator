@@ -1,26 +1,76 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, Text, View, Button, Dimensions, Image,SafeAreaView, ScrollView, StatusBar } from 'react-native'
-import jsonData from '../stores.json';
 import StarRating from 'react-native-star-rating';
 import themeContext from '../config/themeContext';
 import { Linking } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import theme from "../config/theme";
 
 const List  = ({ navigation }) => {
 
 	const theme = useContext(themeContext);
+	const [stores,setStores]=useState([]);
 	const [ratings, setRatings] = useState({});
 
 	function onStarRatingPress(id, rating) {
 		setRatings({ ...ratings, [id] : rating })
-		console.log(ratings)
+		saveReviews()
 	}
+
+	const getStoreData=()=>{
+		fetch('https://stud.hosted.hr.nl/1009357/stores.json'
+		,{
+		  headers : { 
+			'Content-Type': 'application/json',
+			'Accept': 'application/json'
+		   }
+		}
+		)
+		.then(function(response){
+			// console.log(response)
+			return response.json();
+		})
+		.then(function(myJson) {
+			console.log(myJson);
+			setStores(myJson);
+		});
+	}
+
+	let STORAGE_KEY = '@reviews';
+
+	const saveReviews = async () => {
+		try {
+		  await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(ratings))
+		  alert('Data successfully saved')
+		} catch (e) {
+		  alert('Failed to save the data to the storage')
+		}
+	  }
+
+	  const readReviews = async () => {
+		try {
+		  const value = await AsyncStorage.getItem(STORAGE_KEY);
+	  
+		  if (value !== null) {
+			setRatings(JSON.parse(value));
+		  } else {
+			  console.log('geen items gevonden')
+		  }
+		} catch (e) {
+		  alert('Failed to fetch the input from storage');
+		}
+	  };
+
+	  useEffect(() => {
+		getStoreData();
+		readReviews();
+	  }, []);
 
 	return (
       	<ScrollView>
 				<View style={[ styles.container, {backgroundColor: theme.background }]}>
-					{jsonData.map((prop, key) => {
+					{stores.map((prop, key) => {
 						// console.log(prop)
 						return (
 							<View key={key} style={[ styles.card, { borderColor: theme.borderColor, backgroundColor: theme.secondBackground }]}>
@@ -54,7 +104,7 @@ const List  = ({ navigation }) => {
 								</Text>
 							</View>
 						);
-					})}
+					})} 
 				</View>
 		</ScrollView>
 	);
