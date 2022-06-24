@@ -10,7 +10,7 @@ import theme from "../config/theme";
 const List  = ({ navigation }) => {
 
 	const theme = useContext(themeContext);
-	const [stores,setStores]=useState([]);
+	const [stores , setStores] = useState([]);
 	const [ratings, setRatings] = useState({});
 
 	function onStarRatingPress(id, rating) {
@@ -31,7 +31,6 @@ const List  = ({ navigation }) => {
 			return response.json();
 		})
 		.then(function(myJson) {
-			console.log(myJson);
 			setStores(myJson);
 		});
 	}
