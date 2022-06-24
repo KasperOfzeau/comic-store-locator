@@ -117,14 +117,16 @@ const List  = ({ navigation }) => {
 									});
 									}}
 								/>
-								<Text style={[styles.link, {color: theme.link}]}
-										onPress={() => Linking.openURL(prop.googleMaps)}>
-										<Ionicons name="map" size={14}/> Google Maps
-								</Text>
-								<Button title="Share" onPress={() => {
-									onShare("Ken je de stripwinkel " + prop.name + " al? Ik wel! Ik heb deze gevonden met de Stripwinkel zoeker." )
-								 } 
-								}/>
+								<View style={styles.bottomCard}>
+									<Text style={[styles.link, {color: theme.link}]}
+											onPress={() => Linking.openURL(prop.googleMaps)}>
+											<Ionicons name="map" size={14}/> Google Maps
+									</Text>
+									<Button title="Share" style={styles.shareButton} onPress={() => {
+										onShare("Ken je de stripwinkel " + prop.name + " al? Ik wel! Ik heb deze gevonden met de Stripwinkel zoeker." )
+									} 
+									}/>
+								</View>
 							</View>
 						);
 					})} 
@@ -152,8 +154,16 @@ const styles = StyleSheet.create({
 		  marginTop: 15,
 		  marginBottom: 15
 	  },
+	  bottomCard: {
+		flexWrap: 'wrap',
+        flexDirection: 'row',
+		alignItems: "space-around"
+	  },
 	  link: {
 		marginTop: 15
+	  }, 
+	  shareButton: {
+		  marginLeft: 20
 	  }
   });
 
