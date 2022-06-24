@@ -12,7 +12,7 @@ const Home = ({ navigation }) => {
 			<View style={styles.imageContainer}>
 				<Image
 					style={styles.logo}
-					source={require('../assets/pin.png')}
+					source={require('../assets/logo.png')}
 				/>
 			</View>
 			<View style={styles.contentHolder}>
