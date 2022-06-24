@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { StyleSheet, Share, Text, View, Button, Dimensions, Image,SafeAreaView, ScrollView, StatusBar } from 'react-native'
+import { StyleSheet, Share, Text, View, Button, ScrollView, TouchableOpacity } from 'react-native'
 import StarRating from 'react-native-star-rating';
 import themeContext from '../config/themeContext';
 import { Linking } from 'react-native';
@@ -117,14 +117,22 @@ const List  = ({ navigation }) => {
 									}}
 								/>
 								<View style={styles.bottomCard}>
+									<View style={styles.maps}>
 									<Text style={[styles.link, {color: theme.link}]}
 											onPress={() => Linking.openURL(prop.googleMaps)}>
 											<Ionicons name="map" size={14}/> Google Maps
 									</Text>
-									<Button title="Share" style={styles.shareButton} onPress={() => {
-										onShare("Ken je de stripwinkel " + prop.name + " al? Ik wel! Ik heb deze gevonden met de Stripwinkel zoeker." )
-									} 
-									}/>
+									</View>
+									<View style={styles.share}>
+									<TouchableOpacity
+										style={styles.button}
+										onPress={() => {
+											onShare("Ken je de stripwinkel " + prop.name + " al? Ik wel! Ik heb deze gevonden met de Stripwinkel zoeker." )
+										}}
+									>
+									<Ionicons name="share-social" size={24}/>	
+									</TouchableOpacity>
+									</View>
 								</View>
 							</View>
 						);
@@ -154,15 +162,25 @@ const styles = StyleSheet.create({
 		  marginBottom: 15
 	  },
 	  bottomCard: {
-		flexWrap: 'wrap',
-        flexDirection: 'row',
-		alignItems: "space-around"
+		flex: 1, 
+		flexDirection: "row",
+		alignItems: "stretch"
+	  },
+	  maps: {
+		  width: "50%"
+	  },
+	  share: {
+		marginTop: 15,
+		width: "50%",
+		flex: 1,
+	    alignItems: "flex-end",
+	    justifyContent: 'center',
 	  },
 	  link: {
 		marginTop: 15
 	  }, 
 	  shareButton: {
-		  marginLeft: 20
+		  marginLeft: 20,
 	  }
   });
 
