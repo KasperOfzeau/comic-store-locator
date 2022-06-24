@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, Dimensions, Image } from 'react-native'
 import MapView, {Callout, Marker} from 'react-native-maps';
 import * as Location from 'expo-location';
 import { useIsFocused } from "@react-navigation/native";
-import jsonData from '../stores.json';
 import { Ionicons } from "@expo/vector-icons";
 
 const Map  = ({ route, navigation }) => {
@@ -12,6 +11,8 @@ const Map  = ({ route, navigation }) => {
 		latitude: 0,
 		longitude: 0,
 	});
+
+	const [stores , setStores] = useState([]);
 
 	const isFocused = useIsFocused();
     useEffect(() => {
@@ -44,6 +45,28 @@ const Map  = ({ route, navigation }) => {
 				}
 			}})()};
 
+			const getStoreData=()=>{
+				fetch('https://stud.hosted.hr.nl/1009357/stores.json'
+				,{
+				  headers : { 
+					'Content-Type': 'application/json',
+					'Accept': 'application/json'
+				   }
+				}
+				)
+				.then(function(response){
+					// console.log(response)
+					return response.json();
+				})
+				.then(function(myJson) {
+					setStores(myJson);
+				});
+			}
+
+			useEffect(() => {
+				getStoreData();
+			  }, []);
+
 	return (
 			<View style={styles.container}>
 			<MapView 
@@ -56,7 +79,7 @@ const Map  = ({ route, navigation }) => {
 				}}
 				showsUserLocation={true}
 				>
-				{jsonData.map((prop, key) => {
+				{stores.map((prop, key) => {
 					// console.log(prop)
 					return (
 						<Marker  
