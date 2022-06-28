@@ -8,7 +8,6 @@ import theme from "../config/theme";
 const Settings = () => {
 
 	const theme = useContext(themeContext);
-	const [mode, setMode] = useState(false);
 
 	return (
 		<View style={[ styles.container, {backgroundColor: theme.background }]}>

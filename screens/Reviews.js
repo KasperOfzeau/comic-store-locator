@@ -1,18 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
-import { StyleSheet, Button, Text, View, TouchableOpacity } from 'react-native'
-import StarRating from 'react-native-star-rating';
+import { StyleSheet, Text, View, Image, Button } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { EventRegister } from 'react-native-event-listeners';
+import StarRating from 'react-native-star-rating';
 import themeContext from '../config/themeContext';
+import { EventRegister } from 'react-native-event-listeners';
 import { Ionicons } from "@expo/vector-icons";
 
-const TopCard = (prop) => {
+const Reviews = ({ navigation }) => {
 
-    const { navigation } = prop;
+	const theme = useContext(themeContext);
 
-    const theme = useContext(themeContext);
-
-	const [ratings, setRatings] = useState({});
+    const [ratings, setRatings] = useState({});
 
 	function onStarRatingPress(id, rating) {
         EventRegister.emit("updateReviews", {
@@ -62,27 +60,39 @@ const TopCard = (prop) => {
 		saveReviews();
 	  }, [ratings]);
 
-    return (
-        <View>
-            <Text style={{color: theme.color}}>{prop.name}</Text>
-			<Text style={{color: theme.color}}>Adres: {prop.address}, {prop.city}</Text>
-			<Text style={{color: theme.color}}>Telefoon: {prop.telephone}</Text>
-			<Text style={{color: theme.color}} onPress={() => Linking.openURL('https://' + prop.website)}>{prop.website ? prop.website : "Geen website"}</Text>
-			<View style={styles.rating}>
-				<StarRating
-			    	disabled={false}
-					maxStars={5}
-					rating={ratings.hasOwnProperty(prop.name) ? ratings[prop.name] : 0}
-					selectedStar={(rating) => onStarRatingPress(prop.name, rating)}
-					fullStarColor={'#FDCC0D'}
-					starSize={35}
-				/>
-			</View>
-        </View>
-    )
-}
+	return (
+		<View style={[ styles.container, {backgroundColor: theme.background }]}>
+				{Object.entries(ratings).map(([key, val]) => 
+                    <View key={key} style={[ styles.card, { borderColor: theme.borderColor, backgroundColor: theme.secondBackground }]}>
+                        <Text style={{color: theme.color}}>{key}</Text>
+                        <View style={styles.rating}>
+                            <StarRating
+                                disabled={false}
+                                maxStars={5}
+                                rating={ratings.hasOwnProperty(key) ? ratings[key] : 0}
+                                selectedStar={(rating) => onStarRatingPress(key, rating)}
+                                fullStarColor={'#FDCC0D'}
+                                starSize={35}
+                            />
+			            </View>
+                    </View>
+                )}
+		</View>
+	);
+};
 
 const styles = StyleSheet.create({
+	container: {
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+    card: {
+        borderRadius: 6,
+        borderWidth: 0.5,
+        padding: 15,
+        width: '80%',
+        marginTop: 15 
+    },
     rating: {
         width: '80%',
         marginTop: 15,
@@ -90,5 +100,4 @@ const styles = StyleSheet.create({
     },
 });
 
-
-export default TopCard;
+export default Reviews;

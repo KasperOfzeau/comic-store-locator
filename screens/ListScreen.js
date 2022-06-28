@@ -37,7 +37,6 @@ const List  = ({ navigation }) => {
       	<ScrollView>
 				<View style={[ styles.container, {backgroundColor: theme.background }]}>
 					{stores.map((prop, key) => {
-						// console.log(prop)
 						return (
 							<View key={key} style={[ styles.card, { borderColor: theme.borderColor, backgroundColor: theme.secondBackground }]}>
 								<TopCard
