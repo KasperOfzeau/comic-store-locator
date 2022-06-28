@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, View } from 'react-native';
+import { } from 'react-native';
 import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
@@ -10,7 +10,8 @@ import theme from './config/theme';
 import HomeScreen from "./screens/HomeScreen";
 import MapScreen from "./screens/MapScreen";
 import ListScreen from "./screens/ListScreen";
-import SettingsScreen from "./screens/SettingsScreen";
+import Reviews from "./screens/Reviews";
+import DarkModeSwitch from "./components/DarkModeSwitch";
 
 const Tab = createBottomTabNavigator();
 
@@ -36,6 +37,9 @@ export default function App() {
             component={HomeScreen}
             options={{
               // headerShown: false,
+              headerRight: () => (
+                <DarkModeSwitch/>
+              ),
               tabBarLabel: 'Start',
               tabBarIcon: ({ color, size }) => (
                 <Ionicons name="home" color={color} size={size} />
@@ -47,6 +51,9 @@ export default function App() {
             component={MapScreen}
             options={{
               // headerShown: false,
+              headerRight: () => (
+                <DarkModeSwitch/>
+              ),
               tabBarLabel: 'Kaart',
               tabBarIcon: ({ color, size }) => (
                 <Ionicons name="map" color={color} size={size} />
@@ -58,6 +65,9 @@ export default function App() {
             component={ListScreen}
             options={{
               // headerShown: false,
+              headerRight: () => (
+                <DarkModeSwitch/>
+              ),
               tabBarLabel: 'Lijst',
               tabBarIcon: ({ color, size }) => (
                 <Ionicons name="list" color={color} size={size} />
@@ -65,13 +75,16 @@ export default function App() {
             }}
           />
           <Tab.Screen
-            name="Instellingen"
-            component={SettingsScreen}
+            name="Reviews"
+            component={Reviews}
             options={{
               // headerShown: false,
-              tabBarLabel: 'Instellingen',
+              headerRight: () => (
+                <DarkModeSwitch/>
+              ),
+              tabBarLabel: 'Reviews',
               tabBarIcon: ({ color, size }) => (
-                <Ionicons name="settings" color={color} size={size} />
+                <Ionicons name="star-half" color={color} size={size} />
               ),
             }}
           />
