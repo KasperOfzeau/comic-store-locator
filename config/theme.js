@@ -10,7 +10,7 @@ const theme = {
     dark: {
         theme: 'dark',
         color: 'white',
-        background: '#1A1A2E',
+        background: '#000',
         secondBackground: '#16213E',
         borderColor: '#767577',
         link: '#2196F3'

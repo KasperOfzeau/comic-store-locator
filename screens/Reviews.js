@@ -13,6 +13,7 @@ const Reviews = ({ navigation }) => {
     const [ratings, setRatings] = useState({});
 
 	function onStarRatingPress(id, rating) {
+        setRatings({ ...ratings, [id] : rating })
         EventRegister.emit("updateReviews", {
             review: {
                 id: id,
@@ -35,7 +36,6 @@ const Reviews = ({ navigation }) => {
 		try {
 		  const value = await AsyncStorage.getItem(STORAGE_KEY);
 		  if (value !== null) {
-              console.log(value)
 			setRatings(JSON.parse(value));
 		  }
 		} catch (e) {
@@ -44,7 +44,7 @@ const Reviews = ({ navigation }) => {
 	  };
 
       useEffect(() => {
-        let eventListener = EventRegister.addEventListener("updateReviews",(data) => {
+        let eventListener = EventRegister.addEventListener("updateReviewsPage",(data) => {
             setRatings({ ...ratings, [data.review.id] : data.review.rating })
         });
         return () => {

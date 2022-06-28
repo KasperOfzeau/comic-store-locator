@@ -15,7 +15,8 @@ const TopCard = (prop) => {
 	const [ratings, setRatings] = useState({});
 
 	function onStarRatingPress(id, rating) {
-        EventRegister.emit("updateReviews", {
+		setRatings({ ...ratings, [id] : rating })
+        EventRegister.emit("updateReviewsPage", {
             review: {
                 id: id,
                 rating: rating,
