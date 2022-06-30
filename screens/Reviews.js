@@ -8,12 +8,15 @@ import { Ionicons } from "@expo/vector-icons";
 
 const Reviews = ({ navigation }) => {
 
+  // Load theme
 	const theme = useContext(themeContext);
 
-    const [ratings, setRatings] = useState({});
+  // Store ratings
+  const [ratings, setRatings] = useState({});
 
 	function onStarRatingPress(id, rating) {
         setRatings({ ...ratings, [id] : rating })
+        // Update reviews on list screen
         EventRegister.emit("updateReviews", {
             review: {
                 id: id,
@@ -24,6 +27,7 @@ const Reviews = ({ navigation }) => {
 
 	let STORAGE_KEY = '@reviews';
 
+  // Save reviews in AsyncStorage
 	const saveReviews = async () => {
 		try {
 		  await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(ratings))
@@ -32,25 +36,26 @@ const Reviews = ({ navigation }) => {
 		}
 	  }
 
+    // Get reviews from AsyncStorage
 	  const readReviews = async () => {
-		try {
-		  const value = await AsyncStorage.getItem(STORAGE_KEY);
-		  if (value !== null) {
-			setRatings(JSON.parse(value));
-		  }
-		} catch (e) {
-			console.log('Failed to save the data to the storage ' + e)
-		}
+      try {
+        const value = await AsyncStorage.getItem(STORAGE_KEY);
+        if (value !== null) {
+        setRatings(JSON.parse(value));
+        }
+      } catch (e) {
+        console.log('Failed to save the data to the storage ' + e)
+      }
 	  };
 
-      useEffect(() => {
-        let eventListener = EventRegister.addEventListener("updateReviewsPage",(data) => {
-            setRatings({ ...ratings, [data.review.id] : data.review.rating })
-        });
-        return () => {
-          EventRegister.removeEventListener(eventListener);
-        }
-      })
+    useEffect(() => {
+      let eventListener = EventRegister.addEventListener("updateReviewsPage",(data) => {
+          setRatings({ ...ratings, [data.review.id] : data.review.rating })
+      });
+      return () => {
+        EventRegister.removeEventListener(eventListener);
+      }
+    })
 
 	  useEffect(() => {
 		readReviews();
@@ -62,21 +67,22 @@ const Reviews = ({ navigation }) => {
 
 	return (
 		<View style={[ styles.container, {backgroundColor: theme.background }]}>
+        {/* Display all ratings */}
 				{Object.entries(ratings).map(([key, val]) => 
-                    <View key={key} style={[ styles.card, { borderColor: theme.borderColor, backgroundColor: theme.secondBackground }]}>
-                        <Text style={{color: theme.color}}>{key}</Text>
-                        <View style={styles.rating}>
-                            <StarRating
-                                disabled={false}
-                                maxStars={5}
-                                rating={ratings.hasOwnProperty(key) ? ratings[key] : 0}
-                                selectedStar={(rating) => onStarRatingPress(key, rating)}
-                                fullStarColor={'#FDCC0D'}
-                                starSize={35}
-                            />
-			            </View>
-                    </View>
-                )}
+            <View key={key} style={[ styles.card, { borderColor: theme.borderColor, backgroundColor: theme.secondBackground }]}>
+                <Text style={{color: theme.color}}>{key}</Text>
+                <View style={styles.rating}>
+                  <StarRating
+                      disabled={false}
+                      maxStars={5}
+                      rating={ratings.hasOwnProperty(key) ? ratings[key] : 0}
+                      selectedStar={(rating) => onStarRatingPress(key, rating)}
+                      fullStarColor={'#FDCC0D'}
+                      starSize={35}
+                  />
+			          </View>
+            </View>
+          )}
 		</View>
 	);
 };

@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useContext } from "react";
-import { StyleSheet, Button, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import StarRating from 'react-native-star-rating';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { EventRegister } from 'react-native-event-listeners';
 import themeContext from '../config/themeContext';
-import { Ionicons } from "@expo/vector-icons";
 
 const TopCard = (prop) => {
 
-    const { navigation } = prop;
-
+	// Load theme
     const theme = useContext(themeContext);
 
+	// Ratings
 	const [ratings, setRatings] = useState({});
 
+	// When rating is pressed
 	function onStarRatingPress(id, rating) {
 		setRatings({ ...ratings, [id] : rating })
         EventRegister.emit("updateReviewsPage", {
@@ -26,6 +26,7 @@ const TopCard = (prop) => {
 
 	let STORAGE_KEY = '@reviews';
 
+	// Save reviews in AsyncStorage
 	const saveReviews = async () => {
 		try {
 		  await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(ratings))
@@ -34,6 +35,7 @@ const TopCard = (prop) => {
 		}
 	  }
 
+	  // Get reviews from AsyncStorage
 	  const readReviews = async () => {
 		try {
 		  const value = await AsyncStorage.getItem(STORAGE_KEY);

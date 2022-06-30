@@ -1,14 +1,15 @@
 import React, { useContext } from "react";
 import { StyleSheet, Text, View, Image, Button } from "react-native";
 import themeContext from '../config/themeContext';
-import { Ionicons } from "@expo/vector-icons";
 
 const Home = ({ navigation }) => {
 
+	// Loading theme
 	const theme = useContext(themeContext);
 
 	return (
 		<View style={[ styles.container, {backgroundColor: theme.background }]}>
+			{/* Logo */}
 			<View style={styles.imageContainer}>
 				<Image
 					style={styles.logo}
@@ -18,6 +19,7 @@ const Home = ({ navigation }) => {
 			<View style={styles.contentHolder}>
 				<Text style={[styles.title,{ color: theme.color}]}>Stripwinkel zoeker</Text>
 				<Text style={[styles.text,{ color: theme.color}]}>Vind alle stripboekwinkels bij jou in de buurt! Wanneer je de winkel hebt bezocht sla een review van de winkel voor je zelf op. Zodat je weet of je deze winkel vaker moet bezoeken of niet!</Text>
+				{/* Button to map screen */}
 				<Button
 					style={styles.buttonStyle}
 					title="Begin met zoeken"

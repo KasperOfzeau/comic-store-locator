@@ -2,13 +2,13 @@ import React, { useState, useContext } from "react";
 import { StyleSheet, Switch } from 'react-native'
 import { EventRegister } from 'react-native-event-listeners'
 import themeContext from '../config/themeContext';
-import { Ionicons } from "@expo/vector-icons";
-import { Linking } from 'react-native';
 
 const DarkModeSwitch = (prop) => {
 
+    // Load theme
     const theme = useContext(themeContext);
 
+    // Theme mode
     const [mode, setMode] = useState(false);
 
     return (

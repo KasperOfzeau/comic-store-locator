@@ -3,15 +3,16 @@ import { StyleSheet, Text, View, Dimensions, Image } from 'react-native'
 import MapView, {Callout, Marker} from 'react-native-maps';
 import * as Location from 'expo-location';
 import { useIsFocused } from "@react-navigation/native";
-import { Ionicons } from "@expo/vector-icons";
 
 const Map  = ({ route, navigation }) => {
 	
+	// Current location 
 	const [currentLocation, setCurrentLocation] = useState({
 		latitude: 0,
 		longitude: 0,
 	});
 
+	// Store data 
 	const [stores , setStores] = useState([]);
 
 	const isFocused = useIsFocused();
@@ -22,9 +23,11 @@ const Map  = ({ route, navigation }) => {
         }
     }, [isFocused]);
 
+	// Get current location
 	const getLocation = () => {
 		(async () => {
 			if(typeof route.params !== 'undefined'){
+				// Set location from params
 				setCurrentLocation({
 					latitude: Number(route.params.latitude),
 					longitude: Number(route.params.longitude)
@@ -38,6 +41,7 @@ const Map  = ({ route, navigation }) => {
 			
 				let location = await Location.getCurrentPositionAsync({});
 				if(typeof location !== 'undefined') {
+					// Set current location
 					setCurrentLocation({
 					latitude: location.coords.latitude,
 					longitude: location.coords.longitude
@@ -45,6 +49,7 @@ const Map  = ({ route, navigation }) => {
 				}
 			}})()};
 
+			// Get store data from server
 			const getStoreData=()=>{
 				fetch('https://stud.hosted.hr.nl/1009357/stores.json'
 				,{
@@ -55,7 +60,6 @@ const Map  = ({ route, navigation }) => {
 				}
 				)
 				.then(function(response){
-					// console.log(response)
 					return response.json();
 				})
 				.then(function(myJson) {
@@ -69,6 +73,7 @@ const Map  = ({ route, navigation }) => {
 
 	return (
 			<View style={styles.container}>
+			{/* MAP */}
 			<MapView 
 				style={styles.map}
 				region={{
@@ -79,8 +84,8 @@ const Map  = ({ route, navigation }) => {
 				}}
 				showsUserLocation={true}
 				>
+				{/* MARKERS */}
 				{stores.map((prop, key) => {
-					// console.log(prop)
 					return (
 						<Marker  
 							key={key}
@@ -89,6 +94,7 @@ const Map  = ({ route, navigation }) => {
 							description={prop.telephone}
 						>
 						<Image source={require('../assets/pin.png')} style={{height: 35, width:35 }} />
+						{/* Marker popup */}
 						<Callout tooltip>
 							<View>
 								<View style={styles.bubble}>

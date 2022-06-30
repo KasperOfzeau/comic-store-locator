@@ -6,8 +6,10 @@ import { Linking } from 'react-native';
 
 const BottomCard = (prop) => {
 
+	// Load theme
     const theme = useContext(themeContext);
 
+	// When share button is pressed
     const onShare = async (text) => {
 		try {
 		  const result = await Share.share({
@@ -30,12 +32,14 @@ const BottomCard = (prop) => {
     return (
     <View style={styles.bottomCard}>
         <View style={styles.maps}>
+			{/* Google Maps link */}
             <Text style={[styles.link, {color: theme.link}]}
                 onPress={() => Linking.openURL(prop.googleMaps)}>
                 <Ionicons name="map" size={14}/> Google Maps
             </Text>
         </View>
         <View style={styles.share}>
+			{/* Share button */}
             <TouchableOpacity
                 style={styles.button}
                 onPress={() => {
